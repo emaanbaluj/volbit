@@ -6,25 +6,20 @@ import java.util.Collections;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
-/**
- * Stores the latest USD price for each coin in memory.
- */
 @Service
 public class PriceCacheService {
+    private final ConcurrentHashMap<String, Double> latest = new ConcurrentHashMap<>();
 
-    private final ConcurrentHashMap<String, Double> latestPrices = new ConcurrentHashMap<>();
-
-    /**
-     * Called by PricePoller to update the in-memory cache.
-     */
     public void updatePrice(String coinId, Double price) {
-        latestPrices.put(coinId, price);
+        latest.put(coinId, price);
     }
 
-    /**
-     * Return an unmodifiable snapshot of all latest prices.
-     */
     public Map<String, Double> getAllPrices() {
-        return Collections.unmodifiableMap(latestPrices);
+        return Collections.unmodifiableMap(latest);
+    }
+
+    /** New: return just one coin’s latest price (or null if not yet polled) */
+    public Double getPrice(String coinId) {
+        return latest.get(coinId);
     }
 }
