@@ -23,7 +23,7 @@ public class PriceController {
 
     /**
      * GET /api/price/{coinId}
-     * Returns: { "coin":"bitcoin", "price":12345.67 }
+     * Returns: { "coin":"bitcoin", "price":12345.69 }
      */
     @GetMapping("/price/{coinId}")
     public Mono<Map<String, Object>> getPrice(@PathVariable String coinId) {
