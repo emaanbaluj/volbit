@@ -1,33 +1,27 @@
-// src/main/java/com/volbit/model/OptionRequest.java
 package com.volbit.model;
 
-import java.time.Instant;
-
-/**
- * Request parameters for pricing an option.
- */
 public class OptionRequest {
-    private String coinId;
+    /**
+     * Strike price of the option.
+     */
     private double strike;
-    private Instant expiry;
-    private boolean isCall;
 
+    /**
+     * Time to expiry in years (e.g. 0.5 for six months).
+     */
+    private double timeToExpiry;
 
-    public OptionRequest() {}
+    /**
+     * True = call option, false = put option.
+     */
+    private boolean call;
 
-    public OptionRequest(String coinId, double strike, Instant expiry, boolean isCall) {
-        this.coinId = coinId;
+    public OptionRequest() { }
+
+    public OptionRequest(double strike, double timeToExpiry, boolean call) {
         this.strike = strike;
-        this.expiry = expiry;
-        this.isCall = isCall;
-    }
-
-    public String getCoinId() {
-        return coinId;
-    }
-
-    public void setCoinId(String coinId) {
-        this.coinId = coinId;
+        this.timeToExpiry = timeToExpiry;
+        this.call = call;
     }
 
     public double getStrike() {
@@ -38,19 +32,19 @@ public class OptionRequest {
         this.strike = strike;
     }
 
-    public Instant getExpiry() {
-        return expiry;
+    public double getTimeToExpiry() {
+        return timeToExpiry;
     }
 
-    public void setExpiry(Instant expiry) {
-        this.expiry = expiry;
+    public void setTimeToExpiry(double timeToExpiry) {
+        this.timeToExpiry = timeToExpiry;
     }
 
     public boolean isCall() {
-        return isCall;
+        return call;
     }
 
     public void setCall(boolean call) {
-        isCall = call;
+        this.call = call;
     }
 }

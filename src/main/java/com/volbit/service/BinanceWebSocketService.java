@@ -2,6 +2,7 @@ package com.volbit.service;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.json.JsonMapper;
+import com.volbit.model.PriceTick;
 import jakarta.annotation.PostConstruct;
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
@@ -78,7 +79,7 @@ public class BinanceWebSocketService {
 
     /** DTO for each trade tick */
     @Getter
-    public static class PriceTick {
+    public class PriceTick {
         private final String symbol;
         private final double price;
         private final Instant timestamp;
@@ -88,5 +89,6 @@ public class BinanceWebSocketService {
             this.price = price;
             this.timestamp = timestamp;
         }
+
     }
 }
